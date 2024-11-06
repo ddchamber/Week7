@@ -3134,13 +3134,13 @@ vertical-align: -.125em;
 </ul>
 <p>Then, get predictions on the test set for each of your pipelines, and compute the root mean squared error. Which model performed best?</p>
 <p>Note: You should only use the function train_test_split() one time in your code; that is, we should be predicting on the same test set for all three models.</p>
-<div id="cell-2" class="cell" data-execution_count="7">
+<div id="cell-2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>house <span class="op">=</span> pd.read_csv(<span class="st">&quot;/Users/dan/calpoly/BusinessAnalytics/GSB544MACHINE/Week7/data/AmesHousing.csv&quot;</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>house.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -3299,7 +3299,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="21">
+<div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder, PolynomialFeatures</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -3386,11 +3386,11 @@ vertical-align: -.125em;
 <span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>best_model_index <span class="op">=</span> np.argmin([rmse_1, rmse_2, rmse_3, rmse_4]) <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;The best model is Model </span><span class="sc">{</span>best_model_index<span class="sc">}</span><span class="ss"> with the lowest RMSE.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSE for Model 1: 57000.61907316218
-RMSE for Model 2: 54417.78280257894
-RMSE for Model 3: 53691.48847468926
-RMSE for Model 4: 147284.0018411477
-The best model is Model 3 with the lowest RMSE.</code></pre>
+<pre><code>RMSE for Model 1: 55280.21306974586
+RMSE for Model 2: 53041.81779670234
+RMSE for Model 3: 53341.37619717008
+RMSE for Model 4: 71708.721640825
+The best model is Model 2 with the lowest RMSE.</code></pre>
 </div>
 </div>
 </section>
@@ -3399,7 +3399,7 @@ The best model is Model 3 with the lowest RMSE.</code></pre>
 <p>Once again consider four modeling options for house price:</p>
 <p>Use cross_val_score with the pipelines you made earlier to find the cross-validated root mean squared error for each model.</p>
 <p>Which do you prefer? Does this agree with your conclusion from earlier?</p>
-<div id="cell-5" class="cell" data-execution_count="22">
+<div id="cell-5" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find cross validation scores for each</span></span>
@@ -3415,30 +3415,30 @@ The best model is Model 3 with the lowest RMSE.</code></pre>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>rsme4 <span class="op">=</span> <span class="op">-</span>scores4.mean()</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the RMSE for each model</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 1:&quot;</span>, rmse_1)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 2:&quot;</span>, rmse_2)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 3:&quot;</span>, rmse_3)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 4:&quot;</span>, rmse_4)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 1:&quot;</span>, rsme1)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 2:&quot;</span>, rsme2)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 3:&quot;</span>, rsme3)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;RMSE for Model 4:&quot;</span>, rsme4)</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine the best model based on RMSE</span></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>best_model_index <span class="op">=</span> np.argmin([rmse_1, rmse_2, rmse_3, rmse_4]) <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;The best model is Model </span><span class="sc">{</span>best_model_index<span class="sc">}</span><span class="ss"> with the lowest RMSE.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSE for Model 1: 57000.61907316218
-RMSE for Model 2: 54417.78280257894
-RMSE for Model 3: 53691.48847468926
-RMSE for Model 4: 147284.0018411477
-The best model is Model 3 with the lowest RMSE.</code></pre>
+<pre><code>RMSE for Model 1: 55806.32634926364
+RMSE for Model 2: 54168.081429193844
+RMSE for Model 3: 54344.55481548085
+RMSE for Model 4: 60116.99730407765
+The best model is Model 2 with the lowest RMSE.</code></pre>
 </div>
 </div>
-<p>Yes we get the same results. I liked teh second method better. # Part 3 : Tuning Consider one hundred modeling options for house price:</p>
+<p>Yes we get the same results. I liked the second method better. # Part 3 : Tuning Consider one hundred modeling options for house price:</p>
 <ul>
 <li>House size, trying degrees 1 through 10</li>
 <li>Number of rooms, trying degrees 1 through 10</li>
 <li>Building Type</li>
 </ul>
 <p>Hint: The dictionary of possible values that you make to give to GridSearchCV will have two elements instead of one.</p>
-<div id="cell-7" class="cell" data-execution_count="34">
+<div id="cell-7" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the column transformer with polynomial and one-hot encoding</span></span>
@@ -3461,7 +3461,7 @@ The best model is Model 3 with the lowest RMSE.</code></pre>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize GridSearchCV with 5-fold cross-validation</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>gscv <span class="op">=</span> GridSearchCV(lr_pipeline_poly, param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;neg_root_mean_squared_error&#39;</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>gscv <span class="op">=</span> GridSearchCV(lr_pipeline_poly, param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;r2&#39;</span>)</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>gscv_fitted <span class="op">=</span> gscv.fit(X, y)</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
@@ -3470,21 +3470,43 @@ The best model is Model 3 with the lowest RMSE.</code></pre>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;scores&quot;</span>: gscv_fitted.cv_results_[<span class="st">&quot;mean_test_score&quot;</span>]</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Find minimum negative RSME</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>min_score <span class="op">=</span> results_df[<span class="st">&#39;scores&#39;</span>].<span class="bu">min</span>()</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>min_score_row <span class="op">=</span> results_df[results_df[<span class="st">&#39;scores&#39;</span>] <span class="op">==</span> min_score]</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best RME Score:&quot;</span>, <span class="op">-</span>min_score)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Details of Minimum Score Row:</span><span class="ch">\n</span><span class="st">Degrees Rooms:&quot;</span>, min_score_row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>max_score <span class="op">=</span> results_df[<span class="st">&#39;scores&#39;</span>].<span class="bu">max</span>()</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>max_score_row <span class="op">=</span> results_df[results_df[<span class="st">&#39;scores&#39;</span>] <span class="op">==</span> max_score]</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best r2 Score:&quot;</span>, max_score)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>max_score_row</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Best RME Score: 149965.52962182596
-Details of Minimum Score Row:
-Degrees Rooms:     degrees_rooms  degrees_size         scores
-80              9             9 -149965.529622</code></pre>
+<pre><code>Best r2 Score: 0.5576406133621783</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">degrees_rooms</th>
+<th data-quarto-table-cell-role="th">degrees_size</th>
+<th data-quarto-table-cell-role="th">scores</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>3</td>
+<td>0.557641</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 <ol type="1">
 <li>Which model performed the best?</li>
 </ol>
-<p>I found that the model that performed best had degree 9 for both rooms and size, leading to a maximum RSME of 149,965.53</p>
+<p>I found that the model that performed best had degree 1 for rooms and degree 3 for size, leading to a maximum R2 of 0.55</p>
 <ol start="2" type="1">
 <li>What downsides do you see of trying all possible model options? How might you go about choosing a smaller number of tuning values to try?</li>
 </ol>
